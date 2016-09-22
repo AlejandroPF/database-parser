@@ -1,0 +1,22 @@
+{
+    "name": "alejandropena/database-parser",
+    "description": "Database parser to generate PHP Classes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Peña Florentín",
+            "email": "alejandropenaflorentin@gmail.com"
+        }
+    ],
+    "require": {
+	},
+	"require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DatabaseParser\\": "src/"
+        }
+    }
+}
