@@ -46,7 +46,20 @@ class ElementQuery
      * @var array Array of filters
      */
     private $filters;
-
+    /**
+     * @var array 'order by' fields
+     */
+    private $order;
+    
+    /**
+     * @var string 'limit' string
+     */
+    private $limit;
+    
+    /**
+     * @var string 'group by' string
+     */
+    private $groupBy;
     private function __construct($connection, $database, $table) {
         $this->setConnection($connection);
         $this->database = $database;
@@ -102,7 +115,18 @@ class ElementQuery
         }
         return $this;
     }
-
+    public function orderBy($orderBy){
+        $this->order = $orderBy;
+        return $this;
+    }
+    public function limit($limit){
+        $this->limit = $limit;
+        return $this;
+    }
+    public function groupBy($groupBy){
+        $this->groupBy = $groupBy;
+        return $this;
+    }
     /**
      * Adds an 'or' operator to add more filters
      * @return \DatabaseParser\ElementQuery Fluent method 
@@ -147,6 +171,15 @@ class ElementQuery
                     $str .= " " . $filter->getOperator() . " ";
                 }
             }
+        }
+        if("" != trim($this->groupBy)){
+            $str .= " group by ".$this->groupBy;
+        }
+        if("" != trim($this->order)){
+            $str .= " order by ".$this->order;
+        }
+        if("" != trim($this->limit)){
+            $str .= " limit ".$this->limit;
         }
         $sql = $this->connection->query($str);
         if ($sql && $sql->num_rows > 0) {
