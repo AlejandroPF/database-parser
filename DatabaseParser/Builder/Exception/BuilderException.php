@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Builder\Exception;
+namespace DatabaseParser\Builder\Exception;
 
 /**
  * Description of BuilderException
@@ -26,18 +26,32 @@ namespace Builder\Exception;
  */
 class BuilderException extends \Exception
 {
+
     const DATABASE_NOT_FOUND = 1404;
-    
+    const PRIMARY_KEY_IS_EMPTY = 1114;
+    const CANT_CREATE_DIRECTORY = 1257;
+    const CONNECTION_FAILURE = 2001;
     public function __construct($message = "", $code = 0, \Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }
-    public static function create($code,$extra){
+
+    public static function create($code, $extra = null) {
         $output = null;
-        switch ($code){
+        switch ($code) {
             case self::DATABASE_NOT_FOUND:
-                $output = new self("Database '".$extra."' not found",$code,null);
+                $output = new self("ERROR! - Database '" . $extra . "' not found", $code, null);
+                break;
+            case self::PRIMARY_KEY_IS_EMPTY:
+                $output = new self("ERROR! - Cannot add or update data when primary key '" . $extra . "' is empty");
+                break;
+            case self::CANT_CREATE_DIRECTORY:
+                $output = new self("ERROR! - Cannot create directory '" . $extra . "'");
+                break;
+            case self::CONNECTION_FAILURE:
+                $output = new self("ERROR! - Cannot connect to MySQL. Invalid credentials");
                 break;
         }
         return $output;
     }
+
 }

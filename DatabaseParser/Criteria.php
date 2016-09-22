@@ -16,38 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-namespace Builder;
-
+namespace DatabaseParser;
 /**
- * Description of ClassBuilder
+ * Description of Criteria
  *
  * @author Alejandro Peña Florentín (alejandropenaflorentin@gmail.com)
  */
-class ClassBuilder
+class Criteria
 {
-
-    private $fields = [];
-
-    public function __construct($fields) {
-        $this->setFields($fields);
-    }
-
-    public function getFields() {
-        return $this->fields;
-    }
-
-    public function getField($index) {
-        if (isset($this->fields[$index])) {
-            return $this->fields[$index];
-        } else {
-            return null;
-        }
-    }
-
-    public function setFields($fields) {
-        $this->fields = $fields;
-        return $this;
-    }
-
+    const NONE = null;
+    const _AND = "and";
+    const _OR = "or";
+    const _LIKE = "like";
+    const EQUALS = 0;
+    const GREATHER_THAN = 1;
+    const LOWER_THAN = -1;
+    const LIKE = 10;
 }

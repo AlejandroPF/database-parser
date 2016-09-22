@@ -17,19 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace DatabaseParser\Builder;
+
 /**
- * Description of Criteria
+ * Description of BuilderConfig
  *
  * @author Alejandro Peña Florentín (alejandropenaflorentin@gmail.com)
  */
-class Criteria
+class BuilderConfig
 {
-    const NONE = null;
-    const _AND = "and";
-    const _OR = "or";
-    const _LIKE = "like";
-    const EQUALS = 0;
-    const GREATHER_THAN = 1;
-    const LOWER_THAN = -1;
-    const LIKE = 10;
+    public $namespace = null;
+    public $dest = "";
 }
